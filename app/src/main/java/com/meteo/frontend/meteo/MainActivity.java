@@ -10,13 +10,28 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 
-import com.bumptech.glide.Glide;
+import com.caverock.androidsvg.SVGImageView;
 
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
+/*    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        LinearLayout layout = new LinearLayout(this);
+        SVGImageView svgImageView = new SVGImageView(this);
+        svgImageView.setImageResource(R.raw.graph);
+        layout.addView(svgImageView,
+                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+
+
+        svgImageView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        setContentView(layout);
+    }*/
     private Button menu_button;
     private Button test_button;
     private Intent intent;
@@ -27,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //SVG test
+        LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayout);
+        SVGImageView svgImageView = new SVGImageView(this);
+        svgImageView.setImageResource(R.raw.graph);
+        layout.addView(svgImageView,
+                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+        
         menu_button = (Button) findViewById(R.id.menu_button);
         menu_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                // Log.d(TAG, String.valueOf(bitmap));
 
                 ImageView imageView = (ImageView) findViewById(R.id.imageView);
                 imageView.setImageBitmap(bitmap);
@@ -86,5 +107,4 @@ public class MainActivity extends AppCompatActivity {
         //return super.onCreateOptionsMenu(menu);
         return true;
     }
-
 }
